@@ -6,7 +6,6 @@ class InputHandler {
         (e.key === "ArrowDown" ||
           e.key === "ArrowUp" ||
           e.key === "ArrowLeft" ||
-          e.key === "ArrowLeft" ||
           e.key === "ArrowRight") &&
         this.keys.indexOf(e.key) === -1
       ) {
@@ -25,3 +24,5 @@ class InputHandler {
     });
   }
 }
+
+export default InputHandler;
