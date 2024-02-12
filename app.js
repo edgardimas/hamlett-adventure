@@ -16,6 +16,7 @@ function animate() {
     x.draw();
   });
   andrew.draw(ctx);
+  andrew.update(input);
   requestAnimationFrame(animate);
 }
 

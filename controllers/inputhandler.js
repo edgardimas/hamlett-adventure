@@ -1,5 +1,5 @@
 class InputHandler {
-  constuctor() {
+  constructor() {
     this.keys = [];
     window.addEventListener("keydown", (e) => {
       if (
