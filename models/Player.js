@@ -1,5 +1,6 @@
 const andrewPict = new Image();
 andrewPict.src = "../views/assets/player/andrew.png";
+
 class Player {
   constructor(gameWidth, gameHeight, image) {
     this.gameWidth = gameWidth;
@@ -32,18 +33,26 @@ class Player {
     );
   }
   update(input) {
+    console.log(input.keys.indexOf("ArrowRight"));
     if (this.rate % this.frameRate < 1) {
-      console.log(this.rate % 2);
       this.frameX++;
       if (this.frameX == 2) this.frameX = 0;
     }
     this.rate++;
+    if (this.rate > 2000) this.rate = 0;
+    if (
+      input.keys.indexOf("ArrowUp") > -1 &&
+      this.onGround() &&
+      input.keys.indexOf("ArrowRight") > -1
+    ) {
+      this.vy -= 20;
+    }
     if (input.keys.indexOf("ArrowRight") > -1) {
       this.speed = 5;
     } else if (input.keys.indexOf("ArrowLeft") > -1) {
       this.speed = -5;
     } else if (input.keys.indexOf("ArrowUp") > -1 && this.onGround()) {
-      this.vy -= 10;
+      this.vy -= 20;
     } else {
       this.speed = 0;
     }

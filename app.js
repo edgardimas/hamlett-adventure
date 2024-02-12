@@ -1,6 +1,7 @@
 import { Ground, Sky, Clouds, City } from "./models/Layer.js";
-import InputHandler from "./controllers/inputhandler.js";
+import InputHandler from "./controllers/inputHandler.js";
 import andrew from "./models/Player.js";
+import bat from "./models/Enemy.js";
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
@@ -17,6 +18,8 @@ function animate() {
   });
   andrew.draw(ctx);
   andrew.update(input);
+  bat.draw(ctx);
+  bat.update();
   requestAnimationFrame(animate);
 }
 
