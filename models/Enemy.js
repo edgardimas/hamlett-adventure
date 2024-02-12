@@ -1,5 +1,7 @@
 const batPict = new Image();
 batPict.src = "../views/assets/enemies/red-bat.png";
+
+let random;
 class Enemy {
   constructor(gameWidth, gameHeight, image) {
     this.gameWidth = gameWidth;
@@ -14,6 +16,7 @@ class Enemy {
     this.speed = 0;
     this.rate = 11;
     this.frameRate = 10;
+    this.speed = 2;
   }
   draw(context) {
     context.drawImage(
@@ -34,9 +37,8 @@ class Enemy {
       if (this.frameX == 2) this.frameX = 0;
     }
     this.rate++;
+    this.x -= this.speed;
   }
 }
 
-const bat = new Enemy(800, 700, batPict);
-
-export default bat;
+export default Enemy;

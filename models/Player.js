@@ -33,7 +33,6 @@ class Player {
     );
   }
   update(input) {
-    console.log(input.keys.indexOf("ArrowRight"));
     if (this.rate % this.frameRate < 1) {
       this.frameX++;
       if (this.frameX == 2) this.frameX = 0;
@@ -44,6 +43,13 @@ class Player {
       input.keys.indexOf("ArrowUp") > -1 &&
       this.onGround() &&
       input.keys.indexOf("ArrowRight") > -1
+    ) {
+      this.vy -= 20;
+    }
+    if (
+      input.keys.indexOf("ArrowUp") > -1 &&
+      this.onGround() &&
+      input.keys.indexOf("ArrowLeft") > -1
     ) {
       this.vy -= 20;
     }
