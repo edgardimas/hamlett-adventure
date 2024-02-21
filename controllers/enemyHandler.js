@@ -1,20 +1,24 @@
-import bat from "../models/Enemy.js";
-let bats = [];
-let i = 0;
-let lastTime = 0;
-
+import Enemy from "../models/Enemy.js";
 class EnemyHandler {
   constructor() {
-    this.count = 5;
+    this.bats = [];
+    this.batPict = new Image();
+    this.batPict.src = "../views/assets/enemies/red-bat.png";
+    this.lastTime = 0;
+    this.enemyTimer = 0;
+    this.enemyInterval = 2000;
+    this.randmonEnemyInterval = Math.random() * 1000 + 500;
   }
-  bats(context) {
-    for (i = 0; i <= this.count; i++) {
-      bats.push(bat);
+  handleBats(ctx, deltaTime) {
+    if (this.enemyTimer > this.enemyInterval + this.randmonEnemyInterval) {
+      this.bats.push(new Enemy(800, 700, this.batPict));
+      this.enemyTimer = 0;
+    } else {
+      this.enemyTimer += deltaTime;
     }
-
-    bats.forEach((e) => {
-      e.draw(context);
-      e.update();
+    this.bats.forEach((x) => {
+      x.draw(ctx);
+      x.update();
     });
   }
 }

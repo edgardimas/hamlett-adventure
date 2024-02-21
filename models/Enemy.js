@@ -1,7 +1,3 @@
-const batPict = new Image();
-batPict.src = "../views/assets/enemies/red-bat.png";
-
-let random;
 class Enemy {
   constructor(gameWidth, gameHeight, image) {
     this.gameWidth = gameWidth;
