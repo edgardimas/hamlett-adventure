@@ -12,6 +12,8 @@ class EnemyHandler {
   handleBats(ctx, deltaTime) {
     if (this.enemyTimer > this.enemyInterval + this.randmonEnemyInterval) {
       this.bats.push(new Enemy(800, 700, this.batPict));
+      console.log(this.bats);
+      this.randmonEnemyInterval = Math.random() * 1000 + 500;
       this.enemyTimer = 0;
     } else {
       this.enemyTimer += deltaTime;
@@ -20,6 +22,7 @@ class EnemyHandler {
       x.draw(ctx);
       x.update();
     });
+    this.bats = this.bats.filter((bat) => !bat.markedForDeletion);
   }
 }
 

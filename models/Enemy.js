@@ -13,6 +13,7 @@ class Enemy {
     this.rate = 11;
     this.frameRate = 10;
     this.speed = 2;
+    this.markedForDeletion = false;
   }
   draw(context) {
     context.drawImage(
@@ -34,6 +35,7 @@ class Enemy {
     }
     this.rate++;
     this.x -= this.speed;
+    if (this.x < 0 - this.width) this.markedForDeletion = true;
   }
 }
 
