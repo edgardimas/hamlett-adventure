@@ -38,28 +38,31 @@ class Player {
       if (this.frameX == 2) this.frameX = 0;
     }
     this.rate++;
-    console.log(this.rate);
     if (this.rate > 500) this.rate = 0;
 
     switch (true) {
-      case input.keys.indexOf("ArrowUp") > -1 && this.onGround():
-        if (input.keys.indexOf("ArrowRight") > -1) {
+      case input.keys.some((key) => ["ArrowUp", "W", "w", " "].includes(key)) &&
+        this.onGround():
+        this.vy = -20;
+        break;
+
+      case input.keys.some((key) => ["ArrowUp", "W", "w", " "].includes(key)) &&
+        this.onGround():
+        if (input.keys.some((key) => ["ArrowRight", "D", "d"].includes(key))) {
           this.vy -= 20;
-        } else if (input.keys.indexOf("ArrowLeft") > -1) {
+        } else if (
+          input.keys.some((key) => ["ArrowLeft", "A", "a"].includes(key))
+        ) {
           this.vy -= 20;
         }
         break;
 
-      case input.keys.indexOf("ArrowRight") > -1:
+      case input.keys.some((key) => ["ArrowRight", "D", "d"].includes(key)):
         this.speed = 5;
         break;
 
-      case input.keys.indexOf("ArrowLeft") > -1:
+      case input.keys.some((key) => ["ArrowLeft", "A", "a"].includes(key)):
         this.speed = -5;
-        break;
-
-      case input.keys.indexOf("ArrowUp") > -1 && this.onGround():
-        this.vy -= 20;
         break;
 
       default:

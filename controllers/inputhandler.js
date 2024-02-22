@@ -1,29 +1,29 @@
 class InputHandler {
   constructor() {
     this.keys = [];
+    this.allowedKeys = [
+      "ArrowDown",
+      "ArrowUp",
+      "ArrowLeft",
+      "ArrowRight",
+      "W",
+      "A",
+      "S",
+      "D",
+      "w",
+      "a",
+      "s",
+      "d",
+      " ",
+    ];
     window.addEventListener("keydown", (e) => {
-      const allowedKeys = [
-        "ArrowDown",
-        "ArrowUp",
-        "ArrowLeft",
-        "ArrowRight",
-        "KeyW",
-        "KeyA",
-        "KeyS",
-        "KeyD",
-      ];
-
-      if (allowedKeys.includes(e.code) && this.keys.indexOf(e.code) === -1) {
-        this.keys.push(e.code);
+      console.log(e);
+      if (this.allowedKeys.includes(e.key) && this.keys.indexOf(e.key) === -1) {
+        this.keys.push(e.key);
       }
     });
     window.addEventListener("keyup", (e) => {
-      if (
-        e.key === "ArrowDown" ||
-        e.key === "ArrowUp" ||
-        e.key === "ArrowLeft" ||
-        e.key === "ArrowRight"
-      ) {
+      if (this.allowedKeys.includes(e.key)) {
         this.keys.splice(this.keys.indexOf(e.key), 1);
       }
     });
