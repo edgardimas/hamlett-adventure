@@ -15,7 +15,7 @@ class Player {
     this.speed = 0;
     this.vy = 0;
     this.weight = 1;
-    this.rate = 11;
+    this.rate = 0;
     this.frameRate = 10;
   }
 
@@ -33,34 +33,37 @@ class Player {
     );
   }
   update(input) {
-    if (this.rate % this.frameRate < 1) {
+    if (this.rate % this.frameRate === 0) {
       this.frameX++;
       if (this.frameX == 2) this.frameX = 0;
     }
     this.rate++;
-    if (this.rate > 2000) this.rate = 0;
-    if (
-      input.keys.indexOf("ArrowUp") > -1 &&
-      this.onGround() &&
-      input.keys.indexOf("ArrowRight") > -1
-    ) {
-      this.vy -= 20;
-    }
-    if (
-      input.keys.indexOf("ArrowUp") > -1 &&
-      this.onGround() &&
-      input.keys.indexOf("ArrowLeft") > -1
-    ) {
-      this.vy -= 20;
-    }
-    if (input.keys.indexOf("ArrowRight") > -1) {
-      this.speed = 5;
-    } else if (input.keys.indexOf("ArrowLeft") > -1) {
-      this.speed = -5;
-    } else if (input.keys.indexOf("ArrowUp") > -1 && this.onGround()) {
-      this.vy -= 20;
-    } else {
-      this.speed = 0;
+    console.log(this.rate);
+    if (this.rate > 500) this.rate = 0;
+
+    switch (true) {
+      case input.keys.indexOf("ArrowUp") > -1 && this.onGround():
+        if (input.keys.indexOf("ArrowRight") > -1) {
+          this.vy -= 20;
+        } else if (input.keys.indexOf("ArrowLeft") > -1) {
+          this.vy -= 20;
+        }
+        break;
+
+      case input.keys.indexOf("ArrowRight") > -1:
+        this.speed = 5;
+        break;
+
+      case input.keys.indexOf("ArrowLeft") > -1:
+        this.speed = -5;
+        break;
+
+      case input.keys.indexOf("ArrowUp") > -1 && this.onGround():
+        this.vy -= 20;
+        break;
+
+      default:
+        this.speed = 0;
     }
     // horizontal movement
     this.x += this.speed;
