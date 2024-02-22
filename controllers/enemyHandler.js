@@ -7,12 +7,19 @@ class EnemyHandler {
     this.lastTime = 0;
     this.enemyTimer = 0;
     this.enemyInterval = 2000;
-    this.randmonEnemyInterval = Math.random() * 1000 + 500;
+    this.randmonEnemyInterval = Math.random() * 500 + 500;
   }
-  handleBats(ctx, deltaTime) {
+  handleBats(ctx, deltaTime, gameSpeed) {
     if (this.enemyTimer > this.enemyInterval + this.randmonEnemyInterval) {
-      this.bats.push(new Enemy(800, 700, this.batPict));
-      this.randmonEnemyInterval = Math.random() * 1000 + 500;
+      this.bats.push(new Enemy(800, 700, this.batPict, gameSpeed));
+      if (gameSpeed < 7) {
+        this.randmonEnemyInterval =
+          Math.random() * 2000 + 600 - gameSpeed * 500;
+      } else {
+        this.randmonEnemyInterval =
+          Math.random() * 2000 + 2500 - gameSpeed * 500;
+      }
+
       this.enemyTimer = 0;
     } else {
       this.enemyTimer += deltaTime;

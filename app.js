@@ -12,6 +12,7 @@ const gameObjects = [Sky, Clouds, City, Ground];
 const input = new InputHandler();
 let lastTime = 0;
 let score = 0;
+let gameSpeed = 0;
 
 function animate(timeStamp) {
   const deltaTime = timeStamp - lastTime;
@@ -23,9 +24,12 @@ function animate(timeStamp) {
   });
   andrew.draw(ctx);
   andrew.update(input);
-  enemyHandler.handleBats(ctx, deltaTime);
+  enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
   scoreHandler.displayStatusText(ctx, score);
   score = scoreHandler.update(score);
+  if (gameSpeed <= 10) {
+    gameSpeed = gameSpeed + 0.003;
+  }
   requestAnimationFrame(animate);
 }
 

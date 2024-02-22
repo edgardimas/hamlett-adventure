@@ -17,7 +17,6 @@ class InputHandler {
       " ",
     ];
     window.addEventListener("keydown", (e) => {
-      console.log(e);
       if (this.allowedKeys.includes(e.key) && this.keys.indexOf(e.key) === -1) {
         this.keys.push(e.key);
       }

@@ -1,5 +1,5 @@
 class Enemy {
-  constructor(gameWidth, gameHeight, image) {
+  constructor(gameWidth, gameHeight, image, gameSpeed) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.width = 100;
@@ -12,7 +12,8 @@ class Enemy {
     this.speed = 0;
     this.rate = 11;
     this.frameRate = 10;
-    this.speed = 2;
+    this.gameSpeed = gameSpeed;
+    this.speed = 2 + gameSpeed;
     this.markedForDeletion = false;
   }
   draw(context) {
@@ -36,6 +37,7 @@ class Enemy {
     this.rate++;
     this.x -= this.speed;
     if (this.x < 0 - this.width) this.markedForDeletion = true;
+    this.speed = this.speed;
   }
 }
 
