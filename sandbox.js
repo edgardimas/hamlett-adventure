@@ -109,3 +109,12 @@ class Layer {
    * variable from line 10 i need to recalculate this dot speed.
    */
 }
+
+//draw(context) {
+// context.strokeStyle = "white";
+// context.strokeRect(
+//   this.x + 30,
+//   this.y + 20,
+//   this.width - 70,
+//   this.height - 50
+// );

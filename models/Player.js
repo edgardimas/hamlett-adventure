@@ -1,5 +1,6 @@
 const andrewPict = new Image();
 andrewPict.src = "../views/assets/player/andrew.png";
+import enemyHandler from "../controllers/enemyHandler.js";
 
 class Player {
   constructor(gameWidth, gameHeight, image) {
@@ -17,6 +18,8 @@ class Player {
     this.weight = 1;
     this.rate = 0;
     this.frameRate = 10;
+    this.gameOver = false;
+    this.hitBox = {};
   }
 
   draw(context) {
@@ -33,6 +36,23 @@ class Player {
     );
   }
   update(input) {
+    this.hitBox = {
+      x: this.x + 30,
+      y: this.y + 20,
+      width: this.width - 70,
+      height: this.height - 50,
+    };
+
+    enemyHandler.bats.forEach((enemy) => {
+      if (
+        this.hitBox.x < enemy.hitBox.x + enemy.hitBox.width &&
+        this.hitBox.x + this.hitBox.width > enemy.hitBox.x &&
+        this.hitBox.y + this.hitBox.height > enemy.hitBox.y
+      ) {
+        this.gameOver = true;
+      } else {
+      }
+    });
     if (this.rate % this.frameRate === 0) {
       this.frameX++;
       if (this.frameX == 2) this.frameX = 0;
@@ -85,6 +105,9 @@ class Player {
   }
   onGround() {
     return this.y + this.groundHeight >= this.gameHeight - this.height;
+  }
+  gameOver() {
+    return this.gameOver;
   }
 }
 

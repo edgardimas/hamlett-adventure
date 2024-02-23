@@ -25,12 +25,12 @@ function animate(timeStamp) {
   andrew.draw(ctx);
   andrew.update(input);
   enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
-  scoreHandler.displayStatusText(ctx, score);
+  scoreHandler.displayStatusText(ctx, score, andrew.gameOver);
   score = scoreHandler.update(score);
   if (gameSpeed <= 10) {
     gameSpeed = gameSpeed + 0.003;
   }
-  requestAnimationFrame(animate);
+  if (!andrew.gameOver) requestAnimationFrame(animate);
 }
 
 animate(0);
