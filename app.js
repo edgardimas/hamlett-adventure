@@ -3,7 +3,7 @@ import andrew from "./models/Player.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
-//coba 3
+//coba 4
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
