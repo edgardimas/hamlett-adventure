@@ -2,7 +2,7 @@ import { Ground, Sky, Clouds, City } from "./models/Layer.js";
 import andrew from "./models/Player.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
-import InputHandler from "./controllers/inputHandler.js";
+import inputHandler from "./controllers/inputHandler.js";
 //coba 2
 
 const canvas = document.getElementById("canvas1");
@@ -10,7 +10,7 @@ const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = (canvas.width = 800); // the same width in the css
 const CANVAS_HEIGHT = (canvas.height = 700);
 const gameObjects = [Sky, Clouds, City, Ground];
-const input = new InputHandler();
+
 let lastTime = 0;
 let score = 0;
 let gameSpeed = 0;
@@ -24,7 +24,7 @@ function animate(timeStamp) {
     x.draw();
   });
   andrew.draw(ctx);
-  andrew.update(input);
+  andrew.update(inputHandler);
   enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
   scoreHandler.displayStatusText(ctx, score, andrew.gameOver);
   score = scoreHandler.update(score);

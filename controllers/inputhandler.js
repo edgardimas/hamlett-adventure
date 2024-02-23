@@ -29,4 +29,6 @@ class InputHandler {
   }
 }
 
-export default InputHandler;
+const inputHandler = new InputHandler();
+
+export default inputHandler;
