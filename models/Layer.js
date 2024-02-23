@@ -6,10 +6,10 @@ const city = new Image();
 const clouds = new Image();
 const sky = new Image();
 
-ground.src = "../views/assets/ground.png";
-sky.src = "../views/assets/sky.png";
-clouds.src = "../views/assets/clouds.png";
-city.src = "../views/assets/city.png";
+ground.src = "./views/assets/ground.png";
+sky.src = "./views/assets/sky.png";
+clouds.src = "./views/assets/clouds.png";
+city.src = "./views/assets/city.png";
 
 let gameSpeed = 10;
 
