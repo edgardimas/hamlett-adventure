@@ -3,7 +3,7 @@ class EnemyHandler {
   constructor() {
     this.bats = [];
     this.batPict = new Image();
-    this.batPict.src = "../views/assets/enemies/red-bat.png";
+    this.batPict.src = "./views/assets/enemies/red-bat.png";
     this.lastTime = 0;
     this.enemyTimer = 0;
     this.enemyInterval = 2000;

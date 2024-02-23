@@ -1,5 +1,5 @@
 const andrewPict = new Image();
-andrewPict.src = "../views/assets/player/andrew.png";
+andrewPict.src = "./views/assets/player/andrew.png";
 import enemyHandler from "../controllers/enemyHandler.js";
 
 class Player {
