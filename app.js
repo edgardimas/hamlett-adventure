@@ -1,8 +1,8 @@
 import { Ground, Sky, Clouds, City } from "./models/Layer.js";
 import andrew from "./models/Player.js";
-import InputHandler from "./controllers/inputHandler.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
+import InputHandler from "./controllers/inputHandler.js";
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
