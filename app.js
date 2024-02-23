@@ -1,6 +1,6 @@
 import { Ground, Sky, Clouds, City } from "./models/Layer.js";
-import InputHandler from "./controllers/inputHandler.js";
 import andrew from "./models/Player.js";
+import InputHandler from "./controllers/inputHandler.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 
