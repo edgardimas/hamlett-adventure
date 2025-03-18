@@ -1,7 +1,3 @@
-const andrewPict = new Image();
-andrewPict.src = "./views/assets/player/andrew.png";
-import enemyHandler from "../controllers/enemyHandler.js";
-
 class Player {
   constructor(gameWidth, gameHeight, image) {
     this.gameWidth = gameWidth;
@@ -35,46 +31,24 @@ class Player {
       this.height
     );
   }
+
   update(input) {
-    this.hitBox = {
+    this.hitbox = {
       x: this.x + 30,
       y: this.y + 20,
       width: this.width - 70,
       height: this.height - 50,
     };
 
-    enemyHandler.bats.forEach((enemy) => {
-      if (
-        this.hitBox.x < enemy.hitBox.x + enemy.hitBox.width &&
-        this.hitBox.x + this.hitBox.width > enemy.hitBox.x &&
-        this.hitBox.y + this.hitBox.height > enemy.hitBox.y
-      ) {
-        this.gameOver = true;
-      } else {
-      }
-    });
     if (this.rate % this.frameRate === 0) {
-      this.frameX++;
-      if (this.frameX == 2) this.frameX = 0;
+      this.frameX = (this.frameX + 1) % 2;
     }
-    this.rate++;
-    if (this.rate > 500) this.rate = 0;
+    this.rate = (this.rate + 1) % 500;
 
     switch (true) {
       case input.keys.some((key) => ["ArrowUp", "W", "w", " "].includes(key)) &&
         this.onGround():
         this.vy = -20;
-        break;
-
-      case input.keys.some((key) => ["ArrowUp", "W", "w", " "].includes(key)) &&
-        this.onGround():
-        if (input.keys.some((key) => ["ArrowRight", "D", "d"].includes(key))) {
-          this.vy -= 20;
-        } else if (
-          input.keys.some((key) => ["ArrowLeft", "A", "a"].includes(key))
-        ) {
-          this.vy -= 20;
-        }
         break;
 
       case input.keys.some((key) => ["ArrowRight", "D", "d"].includes(key)):
@@ -88,29 +62,23 @@ class Player {
       default:
         this.speed = 0;
     }
-    // horizontal movement
-    this.x += this.speed;
-    if (this.x < 0) this.x = 0;
-    else if (this.x > this.gameWidth - this.width)
-      this.x = this.gameWidth - this.width;
-    // vertical movement
+
+    //Movement
+    this.x = Math.max(
+      0,
+      Math.min(this.x + this.speed, this.gameWidth - this.width)
+    );
     this.y += this.vy;
     if (!this.onGround()) {
       this.vy += this.weight;
     } else {
       this.vy = 0;
     }
-    if (this.y > this.gameHeight - this.height)
-      this.y = this.gameHeight - this.height;
   }
+
   onGround() {
     return this.y + this.groundHeight >= this.gameHeight - this.height;
   }
-  gameOver() {
-    return this.gameOver;
-  }
 }
 
-const andrew = new Player(800, 700, andrewPict);
-
-export default andrew;
+export default Player;

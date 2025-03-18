@@ -1,13 +1,14 @@
-import { Ground, Sky, Clouds, City } from "./models/Layer.js";
-import andrew from "./models/Player.js";
+import { Ground, Sky, Clouds, City } from "./models/layers/Layer.js";
+import hamlett from "./models/players/hamlett.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
+
 //coba 4
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
-const CANVAS_WIDTH = (canvas.width = 800); // the same width in the css
+const CANVAS_WIDTH = (canvas.width = 1200); // the same width in the css
 const CANVAS_HEIGHT = (canvas.height = 700);
 const gameObjects = [Sky, Clouds, City, Ground];
 
@@ -23,15 +24,15 @@ function animate(timeStamp) {
     x.update();
     x.draw();
   });
-  andrew.draw(ctx);
-  andrew.update(inputHandler);
+  hamlett.draw(ctx);
+  hamlett.update(inputHandler);
   enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
-  scoreHandler.displayStatusText(ctx, score, andrew.gameOver);
+  scoreHandler.displayStatusText(ctx, score, hamlett.gameOver);
   score = scoreHandler.update(score);
   if (gameSpeed <= 10) {
     gameSpeed = gameSpeed + 0.003;
   }
-  if (!andrew.gameOver) requestAnimationFrame(animate);
+  if (!hamlett.gameOver) requestAnimationFrame(animate);
 }
 
 animate(0);

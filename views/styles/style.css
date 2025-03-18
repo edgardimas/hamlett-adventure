@@ -5,7 +5,7 @@ body {
 #canvas1 {
   position: absolute;
   border: 3px solid white;
-  width: 800px;
+  width: 1200px;
   height: 700px;
   transform: translate(-50%, -50%);
   /*this will make the canvas is in the middle of the */

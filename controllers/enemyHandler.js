@@ -1,4 +1,4 @@
-import Enemy from "../models/Enemy.js";
+import Enemy from "../models/enemies/Enemy.js";
 class EnemyHandler {
   constructor() {
     this.bats = [];
