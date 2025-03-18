@@ -33,7 +33,7 @@ class Player {
   }
 
   update(input) {
-    this.hitbox = {
+    this.hitBox = {
       x: this.x + 30,
       y: this.y + 20,
       width: this.width - 70,
