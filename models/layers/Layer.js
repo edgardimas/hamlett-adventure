@@ -17,7 +17,7 @@ class Layer {
   constructor(image, speedModifier) {
     this.x = 0; // each object will have horizontal x coordinate that starts at position 0
     this.y = 0; // each object will have y coordinate 0
-    this.width = 1000; //each object will have the same width of 1000
+    this.width = 1200; //each object will have the same width of 1000
     this.height = 700;
     this.x2 = this.width; // the second image of the layer
     this.image = image;

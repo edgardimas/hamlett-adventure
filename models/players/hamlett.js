@@ -14,7 +14,8 @@ class Hamlett extends Player {
       if (
         this.hitBox.x < enemy.hitBox.x + enemy.hitBox.width &&
         this.hitBox.x + this.hitBox.width > enemy.hitBox.x &&
-        this.hitBox.y + this.hitBox.height > enemy.hitBox.y
+        this.hitBox.y + this.hitBox.height > enemy.hitBox.y &&
+        this.hitBox.y < enemy.hitBox.y + enemy.hitBox.height
       ) {
         this.gameOver = true;
       }
@@ -22,5 +23,5 @@ class Hamlett extends Player {
   }
 }
 
-const hamlett = new Hamlett(800, 700);
+const hamlett = new Hamlett(1200, 700);
 export default hamlett;

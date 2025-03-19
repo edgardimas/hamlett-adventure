@@ -9,7 +9,7 @@ class ScoreHandler {
     if (gameOver) {
       context.textAlign = "center";
       context.fillStyle = "black";
-      context.fillText("GAME OVER", 400, 200);
+      context.fillText("GAME OVER", 550, 200);
     }
   }
   update(score) {

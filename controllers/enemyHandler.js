@@ -11,7 +11,7 @@ class EnemyHandler {
   }
   handleBats(ctx, deltaTime, gameSpeed) {
     if (this.enemyTimer > this.enemyInterval + this.randmonEnemyInterval) {
-      this.bats.push(new Enemy(800, 700, this.batPict, gameSpeed));
+      this.bats.push(new Enemy(1200, 700, this.batPict, gameSpeed));
       if (gameSpeed < 7) {
         this.randmonEnemyInterval =
           Math.random() * 2000 + 600 - gameSpeed * 500;
