@@ -3,6 +3,7 @@ import hamlett from "./models/players/hamlett.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
+import gameController from "./controllers/gameController.js";
 
 //coba 4
 
@@ -25,7 +26,7 @@ function animate(timeStamp) {
     x.draw();
   });
   hamlett.draw(ctx);
-  hamlett.update(inputHandler);
+  gameController.update(inputHandler);
   enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
   scoreHandler.displayStatusText(ctx, score, hamlett.gameOver);
   score = scoreHandler.update(score);
