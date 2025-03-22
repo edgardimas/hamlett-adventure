@@ -7,7 +7,7 @@ class Enemy {
     this.groundHeight = 150;
     this.image = image;
     this.x = gameWidth;
-    this.y = this.gameHeight - this.height - this.groundHeight;
+    this.y = this.gameHeight - this.height - this.groundHeight - 30;
     this.frameX = 0;
     this.speed = 0;
     this.rate = 11;

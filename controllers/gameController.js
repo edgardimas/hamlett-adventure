@@ -1,5 +1,5 @@
 import Hamlett from "../models/players/hamlett.js";
-import enemyHandler from "./enemyHandler.js";
+import { enemyHandler } from "./enemyHandler.js";
 const canvas = document.getElementById("canvas1");
 const CANVAS_WIDTH = (canvas.width = 1200); // the same width in the css
 const CANVAS_HEIGHT = (canvas.height = 700);

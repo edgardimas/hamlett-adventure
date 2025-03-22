@@ -1,6 +1,6 @@
 import { Ground, Sky, Clouds, City } from "./models/layers/Layer.js";
 import Hamlett from "./models/players/hamlett.js";
-import enemyHandler from "./controllers/enemyHandler.js";
+import { enemyHandler } from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
 import { gameController, hamlett } from "./controllers/gameController.js";
