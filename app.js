@@ -1,9 +1,9 @@
 import { Ground, Sky, Clouds, City } from "./models/layers/Layer.js";
-import hamlett from "./models/players/hamlett.js";
+import Hamlett from "./models/players/hamlett.js";
 import enemyHandler from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
-import gameController from "./controllers/gameController.js";
+import { gameController, hamlett } from "./controllers/gameController.js";
 
 //coba 4
 

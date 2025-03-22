@@ -1,7 +1,12 @@
-import hamlett from "../models/players/hamlett.js";
+import Hamlett from "../models/players/hamlett.js";
 import enemyHandler from "./enemyHandler.js";
+const canvas = document.getElementById("canvas1");
+const CANVAS_WIDTH = (canvas.width = 1200); // the same width in the css
+const CANVAS_HEIGHT = (canvas.height = 700);
 
-const gameController = {
+export const hamlett = new Hamlett(CANVAS_WIDTH, CANVAS_HEIGHT);
+
+export const gameController = {
   update(input) {
     hamlett.update(input);
 
@@ -17,5 +22,3 @@ const gameController = {
     });
   },
 };
-
-export default gameController;
