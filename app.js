@@ -1,38 +1,46 @@
-import { Ground, Sky, Clouds, City } from "./models/layers/Layer.js";
-import Hamlett from "./models/players/hamlett.js";
-import enemyHandler from "./controllers/enemyHandler.js";
+import { layerController } from "./controllers/layerController.js";
+import playerController from "./controllers/playerController.js";
+import { enemyHandler } from "./controllers/enemyHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
-import { gameController, hamlett } from "./controllers/gameController.js";
-
-//coba 4
+import { gameController } from "./controllers/gameController.js";
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
-const CANVAS_WIDTH = (canvas.width = 1200); // the same width in the css
+const CANVAS_WIDTH = (canvas.width = 1200);
 const CANVAS_HEIGHT = (canvas.height = 700);
-const gameObjects = [Sky, Clouds, City, Ground];
 
 let lastTime = 0;
 let score = 0;
 let gameSpeed = 0;
+const hamlett = playerController.player; // ✅ Get player instance from controller
 
 function animate(timeStamp) {
   const deltaTime = timeStamp - lastTime;
   lastTime = timeStamp;
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  gameObjects.forEach((x) => {
-    x.update();
-    x.draw();
-  });
+
+  // ✅ Update & draw background layers
+  layerController.update(gameSpeed);
+  layerController.draw(ctx);
+
+  // ✅ Player updates & draws
+  hamlett.update(inputHandler); // ✅ Fix: Update before drawing
   hamlett.draw(ctx);
+
+  // ✅ Handle game logic
   gameController.update(inputHandler);
+
+  // ✅ Enemy updates
   enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
+
+  // ✅ Score updates
   scoreHandler.displayStatusText(ctx, score, hamlett.gameOver);
   score = scoreHandler.update(score);
-  if (gameSpeed <= 10) {
-    gameSpeed = gameSpeed + 0.003;
-  }
+
+  // ✅ Gradually increase game speed
+  if (gameSpeed <= 10) gameSpeed += 0.003;
+
   if (!hamlett.gameOver) requestAnimationFrame(animate);
 }
 

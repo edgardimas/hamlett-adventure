@@ -1,16 +1,13 @@
-import Hamlett from "../models/players/hamlett.js";
-import enemyHandler from "./enemyHandler.js";
-const canvas = document.getElementById("canvas1");
-const CANVAS_WIDTH = (canvas.width = 1200); // the same width in the css
-const CANVAS_HEIGHT = (canvas.height = 700);
-
-export const hamlett = new Hamlett(CANVAS_WIDTH, CANVAS_HEIGHT);
+import playerController from "./playerController.js";
+import { enemyHandler } from "./enemyHandler.js";
+const hamlett = playerController.player; // Access player instance
 
 export const gameController = {
   update(input) {
     hamlett.update(input);
 
-    enemyHandler.bats.forEach((enemy) => {
+    // Collision detection with all enemies
+    enemyHandler.enemies.forEach((enemy) => {
       if (
         hamlett.hitBox.x < enemy.hitBox.x + enemy.hitBox.width &&
         hamlett.hitBox.x + hamlett.hitBox.width > enemy.hitBox.x &&

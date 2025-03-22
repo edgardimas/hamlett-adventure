@@ -1,37 +1,35 @@
-import Enemy from "../models/enemies/Enemy.js";
 class EnemyHandler {
-  constructor() {
-    this.bats = [];
-    this.batPict = new Image();
-    this.batPict.src = "./views/assets/enemies/red-bat.png";
-    this.lastTime = 0;
-    this.enemyTimer = 0;
-    this.enemyInterval = 2000;
-    this.randmonEnemyInterval = Math.random() * 500 + 500;
-  }
   handleBats(ctx, deltaTime, gameSpeed) {
-    if (this.enemyTimer > this.enemyInterval + this.randmonEnemyInterval) {
-      this.bats.push(new Enemy(1200, 700, this.batPict, gameSpeed));
-      if (gameSpeed < 7) {
-        this.randmonEnemyInterval =
-          Math.random() * 2000 + 600 - gameSpeed * 500;
-      } else {
-        this.randmonEnemyInterval =
-          Math.random() * 2000 + 2500 - gameSpeed * 500;
+    if (
+      redBat.enemyTimer >
+      redBat.enemyInterval + redBat.randmonEnemyInterval
+    ) {
+      // ✅ Only create enemies when image is fully loaded
+      if (redBat.imageLoaded) {
+        redBat.bats.push(new Enemy(1200, 700, redBat.batPict, gameSpeed));
       }
 
-      this.enemyTimer = 0;
+      // ✅ Adjust interval based on speed
+      redBat.randmonEnemyInterval =
+        gameSpeed < 7
+          ? Math.random() * 2000 + 600 - gameSpeed * 500
+          : Math.random() * 2000 + 2500 - gameSpeed * 500;
+
+      redBat.enemyTimer = 0;
     } else {
-      this.enemyTimer += deltaTime;
+      redBat.enemyTimer += deltaTime;
     }
-    this.bats.forEach((x) => {
-      x.draw(ctx);
-      x.update();
+
+    redBat.bats.forEach((bat) => {
+      if (bat.image) {
+        bat.draw(ctx);
+        bat.update();
+      }
     });
-    this.bats = this.bats.filter((bat) => !bat.markedForDeletion);
+
+    // ✅ Remove deleted enemies
+    redBat.bats = redBat.bats.filter((bat) => !bat.markedForDeletion);
   }
 }
 
-const enemyHandler = new EnemyHandler();
-
-export default enemyHandler;
+export const enemyHandler = new EnemyHandler();
