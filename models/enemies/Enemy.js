@@ -29,6 +29,15 @@ class Enemy {
       this.width,
       this.height
     );
+    //Debug Draw hitBox (in red)
+    context.strokeStyle = "red";
+    context.lineWidth = 2;
+    context.strokeRect(
+      this.hitBox.x,
+      this.hitBox.y,
+      this.hitBox.width,
+      this.hitBox.height
+    );
   }
   update() {
     this.hitBox = {
