@@ -1,6 +1,6 @@
 import { Ground, Sky, Clouds, City } from "./models/layers/Layer.js";
 import Hamlett from "./models/players/hamlett.js";
-import { enemyHandler } from "./controllers/enemyHandler.js";
+import { entityHandler } from "./controllers/entityHandler.js";
 import scoreHandler from "./controllers/scoreHandler.js";
 import inputHandler from "./controllers/inputHandler.js";
 import { gameController, hamlett } from "./controllers/gameController.js";
@@ -27,7 +27,7 @@ function animate(timeStamp) {
   });
   hamlett.draw(ctx);
   gameController.update(inputHandler);
-  enemyHandler.handleBats(ctx, deltaTime, gameSpeed);
+  entityHandler.handleEntities(ctx, deltaTime, gameSpeed);
   scoreHandler.displayStatusText(ctx, score, hamlett.gameOver);
   score = scoreHandler.update(score);
   if (gameSpeed <= 10) {

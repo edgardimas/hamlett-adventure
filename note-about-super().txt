@@ -1,0 +1,47 @@
+when a class extebds abother class in javascript (or most object-oriented langauges)
+super() is used to call the parent class constructor
+this ensures that the child class correctly inherits and initializes properties from its parent
+
+without calling super(), the child class would not have access to the properties and behavior defined in the parent's constructor.
+
+Key philosophical principles begind super()
+1. constructor chaining?
+- in classical OOP when you inherit a class, the child class should first initialize the parent before setting up its own properties
+- super() ensure the base class is fully constructed before the child starts addign its own features.
+
+2. Memory Efficiency and Code Reuse
+- super() prevents redundant code by allowing the child class to reuse initalization logic form the 
+parent.
+
+3. Encapsulation and Modularity
+- child classes should only define their own behavior and delegate the rest of their parent.
+- this improves readibility and mintainability.
+
+4. the this binding rule in ES6
+- in javascript, you cannot use this in a subclass constructor until super() os called.
+- the reason? javascript enforces that the base class must be initialized first before modifying
+this in thhe child class. 
+
+what happends if you dont use super()?
+class Obstacle {
+    constructor (gameWidth, gameHeight, image, gameSpeed) {
+        this.gameWidth = gameWidth;
+        this.gameHeight = gameHeight;
+        this.image = image;
+        this.gameSpeed = gameSpeed;
+    }
+}
+
+class Spike extends Obstacle {
+    constructor(gameWidth, gameHeight, image, gameSpeed) {
+        // Error: must call super constructor before using 'this'
+        this.damage = 10;
+        super(gameWidth, gameHeight, image, gameSpeed);
+    }
+}
+
+why does this fail?
+the javascript engine doesn't know where this comes from because Obstacle has not been initialize
+yet
+
+JS mandates that the parent constructor must be invoked first before using this. 

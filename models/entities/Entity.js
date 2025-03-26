@@ -14,6 +14,7 @@ class Entity {
     this.frameRate = 10;
     this.markedForDeletion = false;
     this.hitBox = {};
+    this.animate = true;
   }
 
   draw(context) {
@@ -46,10 +47,12 @@ class Entity {
       height: this.height - 50,
     };
 
-    if (this.rate % this.frameRate < 1) {
-      this.frameX = (this.frameX + 1) % 2;
+    if (this.animate == true) {
+      if (this.rate % this.frameRate < 1) {
+        this.frameX = (this.frameX + 1) % 2;
+      }
+      this.rate++;
     }
-    this.rate++;
     this.x -= this.speed;
     if (this.x < 0 - this.width) this.markedForDeletion = true;
   }
@@ -57,13 +60,21 @@ class Entity {
 
 class Obstacle extends Entity {
   constructor(gameWidth, gameHeight, image, gameSpeed) {
-    super(gameWidth, gameHeight, image, gameSpeed, 0);
+    super(gameWidth, gameHeight, image, gameSpeed, -15);
+    this.animate = false;
+    this.speed = 5;
   }
 }
 
 class Enemy extends Entity {
   constructor(gameWidth, gameHeight, image, gameSpeed) {
-    super(gameWidth, gameHeight, image, gameSpeed, 30);
+    super(gameWidth, gameHeight, image, gameSpeed, 70);
+  }
+}
+
+class Items extends Entity {
+  constructor(gameWidth, gameHeight, image, gameSpeed) {
+    super(gameWidth, gameHeight, image, gameSpeed, 20);
   }
 }
 
