@@ -1,12 +1,13 @@
-import RedBat from "../models/enemies/RedBat.js";
-import PurpleBat from "../models/enemies/PurpleBat.js";
+import {
+  PurpleBat,
+  RedBat,
+} from "../models/entities/characters/enemies/Bats.js";
 
 class EnemyHandler {
   constructor(gameWidth, gameHeight) {
     this.bats = [];
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    // Load images asynchronously
     this.redBatImage = new Image();
     this.redBatImage.src = "./views/assets/enemies/red-bat.png";
     this.purpleBatImage = new Image();
