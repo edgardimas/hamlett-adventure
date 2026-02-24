@@ -8,6 +8,18 @@ class Player extends Entity {
     this.gameOver = false;
   }
 
+  draw(context) {
+    super.draw(context);
+    context.strokeStyle = "blue";
+    context.lineWidth = 2;
+    context.strokeRect(
+      this.hitBox.x,
+      this.hitBox.y,
+      this.hitBox.width,
+      this.hitBox.height,
+    );
+  }
+
   update(input) {
     this.updateHitBox(30, 20, 70, 50);
 

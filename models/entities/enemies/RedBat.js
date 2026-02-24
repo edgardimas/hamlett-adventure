@@ -1,10 +1,10 @@
-// models/enemies/PurpleBat.js
 import Bat from "./Bat.js";
 
-class PurpleBat extends Bat {
-  constructor(gameWidth, gameHeight, image, gameSpeed) {
-    super(gameWidth, gameHeight, image, gameSpeed);
-    this.time = 0;
+class RedBat extends Bat {
+  static image = new Image();
+
+  constructor(gameWidth, gameHeight, gameSpeed) {
+    super(gameWidth, gameHeight, RedBat.image, gameSpeed);
     this.hitBoxOffSetX = 20;
     this.hitBoxOffsetY = 20;
     this.hitBoxWidth = this.width - 30;
@@ -13,8 +13,6 @@ class PurpleBat extends Bat {
 
   update() {
     super.update();
-    this.time += this.frequency; // Increment time for sine wave
-    this.y = this.baseY + Math.sin(this.time) * this.amplitude; // Sinusoidal motion
     //update hitbox according to new size
     this.hitBox = {
       x: this.x + this.hitBoxOffSetX,
@@ -25,4 +23,7 @@ class PurpleBat extends Bat {
   }
 }
 
-export default PurpleBat;
+// Load image
+RedBat.image.src = "./views/assets/enemies/red-bat.png";
+
+export default RedBat;
