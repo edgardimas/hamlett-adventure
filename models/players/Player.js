@@ -1,44 +1,15 @@
-class Player {
+import Entity from "../Entity.js";
+
+class Player extends Entity {
   constructor(gameWidth, gameHeight, image) {
-    this.gameWidth = gameWidth;
-    this.gameHeight = gameHeight;
-    this.width = 100;
-    this.height = 100;
-    this.groundHeight = 150;
-    this.x = 0;
-    this.y = this.gameHeight - this.height - this.groundHeight;
-    this.image = image;
-    this.frameX = 0;
-    this.speed = 0;
+    super(gameWidth, gameHeight, image);
     this.vy = 0;
     this.weight = 1;
-    this.rate = 0;
-    this.frameRate = 10;
     this.gameOver = false;
-    this.hitBox = {};
-  }
-
-  draw(context) {
-    context.drawImage(
-      this.image,
-      this.frameX * this.width,
-      0,
-      this.width,
-      this.height,
-      this.x,
-      this.y,
-      this.width,
-      this.height
-    );
   }
 
   update(input) {
-    this.hitBox = {
-      x: this.x + 30,
-      y: this.y + 20,
-      width: this.width - 70,
-      height: this.height - 50,
-    };
+    this.updateHitBox(30, 20, 70, 50);
 
     if (this.rate % this.frameRate === 0) {
       this.frameX = (this.frameX + 1) % 2;
@@ -66,7 +37,7 @@ class Player {
     //Movement
     this.x = Math.max(
       0,
-      Math.min(this.x + this.speed, this.gameWidth - this.width)
+      Math.min(this.x + this.speed, this.gameWidth - this.width),
     );
     this.y += this.vy;
     if (!this.onGround()) {
